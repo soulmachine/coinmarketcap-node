@@ -1,6 +1,6 @@
 {
   "name": "coinmarketcap-node",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A complete Node.js library for CoinmarketCap.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,6 +11,7 @@
     "start": "node ./dist/index.js",
     "lint": "eslint . --ext '.js,.jsx,.ts,.tsx,.md'",
     "prettier": "prettier -c --write '**/*'",
+    "prepublish": "npm run build && npm run lint && npm run prettier",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
