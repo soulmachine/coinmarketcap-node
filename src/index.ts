@@ -130,7 +130,7 @@ export default class CoinMarketCap {
       symbol: ['BTC', 'ETH', 'USDT'],
       convert: ['USD'],
     },
-  ): Promise<Currency[]> {
+  ): Promise<{ [key: string]: Currency }> {
     if (!params.id && !params.symbol) {
       throw new Error('At least one "id" or "symbol" is required');
     }

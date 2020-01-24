@@ -10,6 +10,11 @@ assert.ok(argv.apiKey);
 
 (async () => {
   const coinmarketcap = new CoinMarketCap(argv.apiKey);
-  console.info(await coinmarketcap.listingsLatest());
-  console.info(await coinmarketcap.quotesLatest());
+  // console.info(await coinmarketcap.listingsLatest());
+  console.info(
+    await coinmarketcap.quotesLatest({
+      symbol: ['BTC', 'DAI', 'EOS', 'ETH', 'PAX', 'TRX', 'USDC', 'USDT'],
+      convert: 'USD',
+    }),
+  );
 })();
