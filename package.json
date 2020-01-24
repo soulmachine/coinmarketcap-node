@@ -1,0 +1,58 @@
+{
+  "name": "coinmarketcap-node",
+  "version": "0.0.1",
+  "description": "A complete Node.js library for CoinmarketCap.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "bin": "dist/cli.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node ./dist/index.js",
+    "lint": "eslint . --ext '.js,.jsx,.ts,.tsx,.md'",
+    "prettier": "prettier -c --write '**/*'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soulmachine/coinmarketcap-node.git"
+  },
+  "keywords": [
+    "coinmarketcap",
+    "blockchain",
+    "cryptocurrency"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "author": "soulmachine",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/soulmachine/coinmarketcap-node/issues"
+  },
+  "homepage": "https://github.com/soulmachine/coinmarketcap-node",
+  "devDependencies": {
+    "@types/figlet": "^1.2.0",
+    "@types/node": "^13.1.7",
+    "@types/qs": "^6.9.0",
+    "@types/yargs": "^15.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jest": "^23.6.0",
+    "eslint-plugin-markdown": "^1.0.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "chalk": "^3.0.0",
+    "figlet": "^1.2.4",
+    "qs": "^6.9.1",
+    "yargs": "^15.1.0"
+  }
+}
