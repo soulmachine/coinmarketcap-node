@@ -4,17 +4,12 @@ import yargs from 'yargs';
 import CoinMarketCap from './index';
 
 const { argv } = yargs.options({
-  apiKey: { type: 'string', demandOption: true },
+  api_key: { type: 'string', demandOption: true },
 });
-assert.ok(argv.apiKey);
+assert.ok(argv.api_key);
 
 (async () => {
-  const coinmarketcap = new CoinMarketCap(argv.apiKey);
+  const coinmarketcap = new CoinMarketCap(argv.api_key);
   // console.info(await coinmarketcap.listingsLatest());
-  console.info(
-    await coinmarketcap.quotesLatest({
-      symbol: ['BTC', 'DAI', 'EOS', 'ETH', 'PAX', 'TRX', 'USDC', 'USDT'],
-      convert: 'USD',
-    }),
-  );
+  console.info(await coinmarketcap.fetchLatestGlobalMetrics({}));
 })();

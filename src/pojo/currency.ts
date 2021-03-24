@@ -9,5 +9,5 @@ export interface Currency {
   quote: {
     [key: string]: Quote;
   };
-  [key: string]: any;
+  [key: string]: unknown;
 }

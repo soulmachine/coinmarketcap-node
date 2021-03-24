@@ -2,6 +2,7 @@ import { strict as assert } from 'assert';
 import Axios from 'axios';
 import qs from 'qs';
 import { Currency } from './pojo/currency';
+import { Metrics } from './pojo/metrics';
 
 const BASE_URL = 'https://pro-api.coinmarketcap.com/v1';
 
@@ -12,7 +13,7 @@ export default class CoinMarketCap {
     this.apiKey = apiKey;
   }
 
-  private async get(path: string, params: string): Promise<any> {
+  private async get(path: string, params: string): Promise<unknown> {
     const response = await Axios.get(`${BASE_URL}${path}?${params}`, {
       headers: {
         'X-CMC_PRO_API_KEY': this.apiKey,
@@ -98,7 +99,7 @@ export default class CoinMarketCap {
       }
     }
 
-    return this.get(path, qs.stringify(params));
+    return this.get(path, qs.stringify(params)) as Promise<Currency[]>;
   }
 
   public async quotesLatest(
@@ -164,6 +165,27 @@ export default class CoinMarketCap {
       }
     }
 
-    return this.get(path, qs.stringify(params));
+    return this.get(path, qs.stringify(params)) as Promise<{ [key: string]: Currency }>;
+  }
+
+  public async fetchLatestGlobalMetrics(params: {
+    convert?: string | string[];
+    convert_id?: string | number[];
+  }): Promise<Metrics> {
+    const path = '/global-metrics/quotes/latest';
+
+    if (params.convert) {
+      if (Array.isArray(params.convert)) {
+        params.convert = params.convert.join(','); // eslint-disable-line no-param-reassign
+      }
+    }
+
+    if (params.convert_id) {
+      if (Array.isArray(params.convert_id)) {
+        params.convert_id = params.convert_id.join(','); // eslint-disable-line no-param-reassign
+      }
+    }
+
+    return this.get(path, qs.stringify(params)) as Promise<Metrics>;
   }
 }
