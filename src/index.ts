@@ -29,6 +29,40 @@ export default class CoinMarketCap {
     return response.data.data;
   }
 
+  public async fetchCryptocurrencyMap(
+    params: {
+      listing_status?: 'active' | 'inactive';
+      start?: number;
+      limit?: number;
+      sort?: 'id' | 'cmc_rank';
+      symbol?: string | Array<string>;
+      aux?:
+        | string
+        | Array<
+            'platform' | 'first_historical_data' | 'last_historical_data' | 'is_active' | 'status'
+          >;
+    } = {
+      start: 1,
+      limit: 5000,
+    },
+  ): Promise<Currency[]> {
+    const path = '/cryptocurrency/map';
+
+    if (params.symbol) {
+      if (Array.isArray(params.symbol)) {
+        params.symbol = params.symbol.join(','); // eslint-disable-line no-param-reassign
+      }
+    }
+
+    if (params.aux) {
+      if (Array.isArray(params.aux)) {
+        params.aux = params.aux.join(','); // eslint-disable-line no-param-reassign
+      }
+    }
+
+    return this.get(path, qs.stringify(params)) as Promise<Currency[]>;
+  }
+
   public async listingsLatest(
     params: {
       start: number;
